@@ -7,7 +7,7 @@ import urllib
 
 
 def _req(term, api_key, results, lang, start, proxies, timeout):
-    resp = requests.get(
+    resp = get(
         url="https://www.google.com/search",
         headers={
             "User-Agent": get_useragent(),
@@ -58,7 +58,7 @@ def search(term, api_key, num_results=10, lang="en", proxy=None, advanced=False,
                     lang, start, proxies, timeout)
 
         # Parse
-        soup = BeautifulSoup(resp.text, "html.parser")
+        soup = BeautifulSoup(resp.content, "html.parser")
         result_block = soup.find_all("div", attrs={"class": "g"})
         if len(result_block) ==0:
             start += 1
