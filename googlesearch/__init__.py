@@ -7,7 +7,7 @@ import urllib
 
 
 def _req(term, api_key, results, lang, start, proxies, timeout):
-    resp = get(
+    resp = requests.get(
         url="https://www.google.com/search",
         headers={
             "User-Agent": get_useragent(),
