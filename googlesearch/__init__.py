@@ -7,23 +7,24 @@ import urllib
 
 
 def _req(term, api_key, results, lang, start, proxies, timeout):
-    resp = get(
-        url="https://scrapingant.p.rapidapi.com/get",
-        headers={
-            "User-Agent": get_useragent(),
+
+    api_url = "https://scrapingant.p.rapidapi.com/get"
+
+    headers={
             "X-RapidAPI-Key": api_key,
 	    "X-RapidAPI-Host": "scrapingant.p.rapidapi.com"
-        },
-        params={
-	    "url":"https://www.google.com/search",
+        }
+
+    querystring = {
+	    "url":f"https://www.google.com/search",
             "q": term,
             "num": results + 2,  # Prevents multiple requests
             "hl": lang,
             "start": start,
-        },
-        proxies=proxies,
-        timeout=timeout,
-    )
+        }
+
+    resp = requests.get(api_url, headers=headers, params=querystring, proxies=proxies, timeout=timeout)
+
     resp.raise_for_status()
     return resp
 
@@ -38,7 +39,7 @@ class SearchResult:
         return f"SearchResult(url={self.url}, title={self.title}, description={self.description})"
 
 
-def search(term, api_key, num_results=10, lang="en", proxy=None, advanced=False, sleep_interval=0, timeout=100):
+def search(term, api_key, num_results=10, lang="en", proxy=None, advanced=False, sleep_interval=0, timeout=10):
     """Search the Google search engine"""
 
     escaped_term = urllib.parse.quote_plus(term) # make 'site:xxx.xxx.xxx ' works.
