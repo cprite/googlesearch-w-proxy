@@ -6,11 +6,13 @@ from .user_agents import get_useragent
 import urllib
 
 
-def _req(term, results, lang, start, proxies, timeout):
+def _req(term, results, lang, start, proxies, timeout, api_key):
     resp = get(
         url="https://www.google.com/search",
         headers={
-            "User-Agent": get_useragent()
+            "User-Agent": get_useragent(),
+            "X-RapidAPI-Key": api_key,
+	        "X-RapidAPI-Host": "scrapingant.p.rapidapi.com"
         },
         params={
             "q": term,
@@ -35,7 +37,7 @@ class SearchResult:
         return f"SearchResult(url={self.url}, title={self.title}, description={self.description})"
 
 
-def search(term, num_results=10, lang="en", proxy=None, advanced=False, sleep_interval=0, timeout=5):
+def search(term, num_results=10, lang="en", proxy=None, advanced=False, sleep_interval=0, timeout=5, api_key):
     """Search the Google search engine"""
 
     escaped_term = urllib.parse.quote_plus(term) # make 'site:xxx.xxx.xxx ' works.
@@ -53,7 +55,7 @@ def search(term, num_results=10, lang="en", proxy=None, advanced=False, sleep_in
     while start < num_results:
         # Send request
         resp = _req(escaped_term, num_results - start,
-                    lang, start, proxies, timeout)
+                    lang, start, proxies, timeout, api_key)
 
         # Parse
         soup = BeautifulSoup(resp.text, "html.parser")
