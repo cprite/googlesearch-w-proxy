@@ -8,13 +8,14 @@ import urllib
 
 def _req(term, api_key, results, lang, start, proxies, timeout):
     resp = get(
-        url="https://www.google.com/search",
+        url="https://scrapingant.p.rapidapi.com/get",
         headers={
             "User-Agent": get_useragent(),
             "X-RapidAPI-Key": api_key,
-	        "X-RapidAPI-Host": "scrapingant.p.rapidapi.com"
+	    "X-RapidAPI-Host": "scrapingant.p.rapidapi.com"
         },
         params={
+	    "url":"https://www.google.com/search",
             "q": term,
             "num": results + 2,  # Prevents multiple requests
             "hl": lang,
