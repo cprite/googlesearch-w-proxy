@@ -67,7 +67,6 @@ def search(term, api_key, num_results=10, lang="en", proxy=None, advanced=False,
             start += 1
         for result in result_block:
             # Find link, title, description
-	    print('Checkpoint 5')
             link = result.find("a", href=True)
             title = result.find("h3")
             description_box = result.find(
