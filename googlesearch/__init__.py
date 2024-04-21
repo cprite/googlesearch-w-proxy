@@ -58,9 +58,7 @@ def search(term, api_key, num_results=10, lang="en", proxy=None, advanced=False,
     start = 0
     while start < num_results:
         # Send request
-        resp = _req(escaped_term, api_key, num_results - start,
-                    lang, start, proxies, timeout)
-
+        resp = _req(escaped_term, api_key, num_results - start, lang, start, proxies, timeout)
 	print('Checkpoint 2')
 
         # Parse
