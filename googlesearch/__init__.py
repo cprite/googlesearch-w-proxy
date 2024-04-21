@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 from requests import get
 from .user_agents import get_useragent
 import urllib
+import requests
 
 
 def _req(term, api_key, results, lang, start, proxies, timeout):
@@ -23,7 +24,7 @@ def _req(term, api_key, results, lang, start, proxies, timeout):
             "start": start,
         }
 
-    resp = get(api_url, headers=headers, params=querystring, proxies=proxies, timeout=timeout)
+    resp = requests.get(api_url, headers=headers, params=querystring, proxies=proxies, timeout=timeout)
 
     resp.raise_for_status()
     return resp
