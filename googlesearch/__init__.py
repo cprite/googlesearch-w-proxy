@@ -16,14 +16,14 @@ def _req(term, api_key, results, lang, start, proxies, timeout):
         }
 
     querystring = {
-	    "url":f"https://www.google.com/search",
+	    "url":"https://www.google.com/search",
             "q": term,
             "num": results + 2,  # Prevents multiple requests
             "hl": lang,
             "start": start,
         }
 
-    resp = requests.get(api_url, headers=headers, params=querystring, proxies=proxies, timeout=timeout)
+    resp = get(api_url, headers=headers, params=querystring, proxies=proxies, timeout=timeout)
 
     resp.raise_for_status()
     return resp
