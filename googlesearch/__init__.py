@@ -27,6 +27,7 @@ def _req(term, api_key, results, lang, start, proxies, timeout):
     resp = requests.get(api_url, headers=headers, params=querystring, proxies=proxies, timeout=timeout)
 
     resp.raise_for_status()
+    print('Checkpoint 1')
     return resp
 
 
@@ -60,13 +61,18 @@ def search(term, api_key, num_results=10, lang="en", proxy=None, advanced=False,
         resp = _req(escaped_term, api_key, num_results - start,
                     lang, start, proxies, timeout)
 
+	print('Checkpoint 2')
+
         # Parse
         soup = BeautifulSoup(resp.content, "html.parser")
+	print('Checkpoint 3')
         result_block = soup.find_all("div", attrs={"class": "g"})
+	print('Checkpoint 4')
         if len(result_block) ==0:
             start += 1
         for result in result_block:
             # Find link, title, description
+	    print('Checkpoint 5')
             link = result.find("a", href=True)
             title = result.find("h3")
             description_box = result.find(
