@@ -15,7 +15,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/Nv7-GitHub/googlesearch",
-    packages=["googlesearch_with_proxy"],
+    packages=["googlesearch"],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
