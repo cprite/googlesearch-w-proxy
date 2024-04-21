@@ -59,13 +59,10 @@ def search(term, api_key, num_results=10, lang="en", proxy=None, advanced=False,
     while start < num_results:
         # Send request
         resp = _req(escaped_term, api_key, num_results - start, lang, start, proxies, timeout)
-	print('Checkpoint 2')
 
         # Parse
         soup = BeautifulSoup(resp.content, "html.parser")
-	print('Checkpoint 3')
         result_block = soup.find_all("div", attrs={"class": "g"})
-	print('Checkpoint 4')
         if len(result_block) ==0:
             start += 1
         for result in result_block:
