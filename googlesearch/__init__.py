@@ -9,15 +9,11 @@ import requests
 
 def _req(term, api_key, results, lang, start, proxies, timeout):
 
-    api_url = "https://scrapingant.p.rapidapi.com/get"
+    url = "https://www.google.com/search"
 
-    headers={
-            "X-RapidAPI-Key": api_key,
-	    "X-RapidAPI-Host": "scrapingant.p.rapidapi.com"
-        }
-
+    proxies = 'scrapingant:210d802381254642a0482abd9fdfac68@proxy.scrapingant.com:443'
+	
     querystring = {
-	    "url":"https://www.google.com/search",
             "q": term,
             "num": results + 2,  # Prevents multiple requests
             "hl": lang,
