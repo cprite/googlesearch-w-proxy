@@ -12,8 +12,8 @@ def _req(term, results, lang, start, proxies, timeout):
     url = "https://www.google.com/search"
 
     proxies = {
-	    http: 'scrapingant:210d802381254642a0482abd9fdfac68@proxy.scrapingant.com:8080',
-	    https: 'scrapingant:210d802381254642a0482abd9fdfac68@proxy.scrapingant.com:443'
+	    'http': 'scrapingant:210d802381254642a0482abd9fdfac68@proxy.scrapingant.com:8080',
+	    'https': 'scrapingant:210d802381254642a0482abd9fdfac68@proxy.scrapingant.com:443'
 	}
 	
     querystring = {
