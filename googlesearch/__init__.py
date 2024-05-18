@@ -20,7 +20,7 @@ def _req(term, results, lang, start, proxies, timeout):
             "start": start,
         }
 
-    resp = requests.get(url, headers=headers, params=querystring, proxies=proxies, timeout=timeout)
+    resp = requests.get(url, params=querystring, proxies=proxies, timeout=timeout)
 
     resp.raise_for_status()
     print('Checkpoint 1')
