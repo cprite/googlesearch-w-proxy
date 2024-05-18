@@ -7,7 +7,7 @@ import urllib
 import requests
 
 
-def _req(term, api_key, results, lang, start, proxies, timeout):
+def _req(term, results, lang, start, proxies, timeout):
 
     url = "https://www.google.com/search"
 
@@ -20,7 +20,7 @@ def _req(term, api_key, results, lang, start, proxies, timeout):
             "start": start,
         }
 
-    resp = requests.get(api_url, headers=headers, params=querystring, proxies=proxies, timeout=timeout)
+    resp = requests.get(url, headers=headers, params=querystring, proxies=proxies, timeout=timeout)
 
     resp.raise_for_status()
     print('Checkpoint 1')
@@ -37,7 +37,7 @@ class SearchResult:
         return f"SearchResult(url={self.url}, title={self.title}, description={self.description})"
 
 
-def search(term, api_key, num_results=10, lang="en", proxy=None, advanced=False, sleep_interval=0, timeout=10):
+def search(term, num_results=10, lang="en", proxy=None, advanced=False, sleep_interval=0, timeout=10):
     """Search the Google search engine"""
 
     escaped_term = urllib.parse.quote_plus(term) # make 'site:xxx.xxx.xxx ' works.
